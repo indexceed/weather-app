@@ -1,3 +1,8 @@
+import RefreshIcon from '@mui/icons-material/Refresh';
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import InvertColorsIcon from '@mui/icons-material/InvertColors';
+import SpeedIcon from '@mui/icons-material/Speed';
+import AirIcon from '@mui/icons-material/Air';
 
 
 export const WeatherApp = () => {
@@ -11,20 +16,36 @@ export const WeatherApp = () => {
           <span>Grados F°</span>
         </div>
         <div className="reloadButtonContainer">
-          <span>reload</span>
+          <RefreshIcon className='icon' sx={{ fontSize: 30 }}/>
         </div>
       </div>
 
       <div className="bodyContainer">
+
         <div className="mainInfoContainer">
-          <span className="climaSpan">Clima</span>
+          <span className="climaSpan">Clima:</span>
         </div>
+
         <div className="specsInfoContainer">
-          <span className="FeelsLike">Feels like</span>
-          <span>Humidity</span>
-          <span>Wind Speed</span>
-          <span className="windSpeed">Pressure</span>
+          <div className="FeelsLike">
+            <DeviceThermostatIcon className='icon' sx={{ fontSize: 30 }} />
+            <span>Feels like:</span>
+          </div>
+          <div>
+            <InvertColorsIcon className='icon' sx={{ fontSize: 30 }}/>
+            
+            <span>Humidity:</span>
+          </div>
+          <div>
+            <AirIcon className='icon' sx={{ fontSize: 30 }}/>
+            <span>Wind Speed:</span>
+          </div>
+          <div className="windSpeed">
+            <SpeedIcon className='icon'  sx={{ fontSize: 30 }}/>
+            <span >Pressure:</span>
+          </div>
         </div>
+
       </div>
      </div>
     </>
