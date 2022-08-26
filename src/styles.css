@@ -1,82 +1,162 @@
 :root {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-size: small;
-  font-weight:lighter;
- }
- .mainContainer{
-   display:flex;
-   flex-direction: column;
-   align-items: center;
-   align-self: center;
-   width: 97%;
-   height: 100%;
-   margin-left: 5px;
- }
- .headContainer{
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-   width: 100%;
-   height: 70px;
- }
- .degreesButtonContainer{
-   text-align: center;
-   margin-top: 10px;
-   width: 120px;
-   height: 50px;
-   line-height: 45px;
- }
- .reloadButtonContainer{
-   text-align: center;
-   margin-top: 10px;
-   width: 120px;
-   height: 50px;
-   line-height: 45px;
- }
- .bodyContainer{
-   display: flex;
-   flex-direction: column;
-   width: 100%;
-   
- }
- .mainInfoContainer{
-   width: 100%;
-   height: 350px;
- }
- .specsInfoContainer{
-  
-   border: 2px solid rgb(190, 190, 190);
-   border-radius: 5px;
-   display: grid;
-   grid-template-rows: 50% 50%;
-   grid-template-columns: 50% 50%;
-   width: 100%;
-   height: 170px;
- }
- .specsInfoContainer div{
-  text-align: center;
-  height: 85px;
-  line-height: 85px;
+  font-weight: lighter;
+}
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 97%;
+  height: 100%;
+  margin-left: 5px;
+}
+.headContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
- }
- .specsInfoContainer span {
-  line-height: 30px;
-  margin-left: 55px;
- }
- .climaSpan{
+  height: 70px;
+}
+.degreesSelectContainer {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 10px;
+  width: 120px;
+  height: 50px;
+  line-height: 45px;
+}
+.degreesSelectButton {
+  margin-top: 7px;
+  background-color: white;
+  border: none;
+}
+ul {
+  padding: 0px 30px;
+  margin: 0px;
+  list-style: none;
+  font-size: 18px;
+}
+.reloadButtonContainer {
+  text-align: center;
+  margin-top: 10px;
+  width: 120px;
+  height: 50px;
+  line-height: 45px;
+}
+
+.reloadButtonContainer button {
+  background-color: white;
+  border: none;
+  margin-top: 10px;
+  margin-left: 80px;
+  height: 40px;
+  width: 40px;
+}
+.refreshIcon {
+  color: red;
+}
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.mainInfoContainer {
+  display: grid;
+  grid-template-rows: auto;
+  width: 100%;
+  height: 350px;
+}
+.mainInfoContainer div {
+  text-align: center;
+}
+.location {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.location span {
+  font-size: 18px;
+}
+.weatherIcon {
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+}
+.mainDegrees {
+  font-size: 35px;
+  color: red;
+  font-family: monospace;
+}
+.weatherInfo1 {
+  margin-top: 5px;
+}
+.weatherInfo2 {
+  font-size: 20px;
+  color: blue;
+  margin-top: 15px;
+}
+.specsInfoContainer {
+  border: 2px solid rgb(190, 190, 190);
+  border-radius: 5px;
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  height: 170px;
+}
+.specContainer {
+  text-align: center;
+  display: grid;
+  grid-template-rows: 45% 55%;
+}
+.specsInfoContainer span {
+  line-height: 25px;
+  color: blue;
+  font-size: 15px;
+  font-weight: 900;
+}
+.specsInfoContainer text {
+  line-height: 45px;
+}
+.climaSpan {
   line-height: 325px;
   margin-left: 45%;
- }
-.FeelsLike{
-  border-right: 2px solid rgb(190, 190, 190);
-  border-bottom: 2px solid rgb(190, 190, 190);
 }
-.windSpeed{
-  border-top: 2px solid rgb(190, 190, 190);
-  border-left: 2px solid rgb(190, 190, 190);
+.FeelsLike {
+  border-right: 1px solid rgb(190, 190, 190);
+  border-bottom: 1px solid rgb(190, 190, 190);
+  display: grid;
+  grid-template-columns: 40% 50%;
 }
-.icon{
-  /* margin-right: 60px; */
-  margin-top: 20px;
+.windSpeed {
+  border-top: 1px solid rgb(190, 190, 190);
+  border-right: 1px solid rgb(190, 190, 190);
+  display: grid;
+  grid-template-columns: 40% 50%;
+}
+.humidity {
+  border-left: 1px solid rgb(190, 190, 190);
+  border-bottom: 1px solid rgb(190, 190, 190);
+  display: grid;
+  grid-template-columns: 40% 50%;
+}
+.pressure {
+  border-top: 1px solid rgb(190, 190, 190);
+  border-left: 1px solid rgb(190, 190, 190);
+  display: grid;
+  grid-template-columns: 40% 50%;
+}
+.icon {
+  margin-top: 25px;
+  margin-left: 20%;
   color: red;
 }
