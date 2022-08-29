@@ -23,7 +23,7 @@ export const WeatherApp = () => {
             </div>
           </div>
 
-          <div className="reloadButtonContainer">
+          <div className="refreshButtonContainer">
             <button>
               <RefreshIcon className="refreshIcon" sx={{ fontSize: 30 }} />
             </button>
@@ -32,8 +32,8 @@ export const WeatherApp = () => {
 
         <div className="bodyContainer">
           <div className="mainInfoContainer">
-            <div className="location">
-              <span>Zapopan</span>
+            <div className="locationContainer">
+              <span className="locationText">Zapopan</span>
             </div>
             <div className="weatherIcon">
               <FilterDramaIcon sx={{ fontSize: 70 }} />
@@ -47,34 +47,42 @@ export const WeatherApp = () => {
 
           <div className="specsInfoContainer">
             <div className="FeelsLike">
-              <DeviceThermostatIcon className="icon" sx={{ fontSize: 30 }} />
+              <div className="iconSpecContainer">
+                <DeviceThermostatIcon className="icon" sx={{ fontSize: 30 }} />
+              </div>
               <div className="specContainer">
-                <text>Feels like:</text>
-                <span>43.9</span>
+                <span className="specsTitle">Feels like:</span>
+                <span className="specsContent">43.9</span>
               </div>
             </div>
 
             <div className="humidity">
-              <InvertColorsIcon className="icon" sx={{ fontSize: 30 }} />
+              <div className="iconSpecContainer">
+                 <InvertColorsIcon className="icon" sx={{ fontSize: 30 }} />
+              </div>
               <div className="specContainer">
-                <text>Humidity:</text>
-                <span>93 %</span>
+                <span className="specsTitle">Humidity:</span>
+                <span className="specsContent">93 %</span>
               </div>
             </div>
 
             <div className="windSpeed">
-              <AirIcon className="icon" sx={{ fontSize: 30 }} />
+              <div className="iconSpecContainer">
+                <AirIcon className="icon" sx={{ fontSize: 30 }} />
+              </div>
               <div className="specContainer">
-                <text>Wind Speed:</text>
-                <span>2 miles/h</span>
+                <span className="specsTitle">Wind Speed:</span>
+                <span className="specsContent">20 miles/h</span>
               </div>
             </div>
 
             <div className="pressure">
-              <SpeedIcon className="icon" sx={{ fontSize: 30 }} />
+              <div className="iconSpecContainer">
+                <SpeedIcon className="icon" sx={{ fontSize: 30 }} />
+              </div>
               <div className="specContainer">
-                <text>Pressure:</text>
-                <span>1025 hPa</span>
+                <span className="specsTitle">Pressure:</span>
+                <span className="specsContent">1025 hPa</span>
               </div>
             </div>
           </div>
