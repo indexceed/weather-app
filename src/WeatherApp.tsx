@@ -1,19 +1,48 @@
+import axios from "axios";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+
 import RefreshIcon from "@mui/icons-material/Refresh";
 import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import SpeedIcon from "@mui/icons-material/Speed";
 import AirIcon from "@mui/icons-material/Air";
-import FilterDramaIcon from "@mui/icons-material/FilterDrama";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
+
+
+const baseURL = "https://api.openweathermap.org/data/2.5/weather?q=Zapopan&appid=55729a893ab62af8afc815604208dd24&units=metric&lang=es"
+
 export const WeatherApp = () => {
+
+  const [post, setPost] = useState<any>(null);
+
+  async function getData(){
+    const result = await axios.get(baseURL)
+    setPost(result.data)
+  }
+
+  useEffect(() => {
+    if(!post){
+      getData()
+    }
+  }, []);
+
+  if (!post) return null;
+
+
+  const iconCode = post?.weather[0]?.icon
+  const iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@4x" + ".png";
   return (
     <>
+    {console.log(iconUrl)}
       <div className="mainContainer">
         <div className="headContainer">
           <div className="degreesSelectContainer">
             <div>
               <ul>
-                <li>F°</li>
+                <li><button >F°</button></li>
+                <li><button >C°</button></li>
               </ul>
             </div>
             <div>
@@ -24,7 +53,7 @@ export const WeatherApp = () => {
           </div>
 
           <div className="refreshButtonContainer">
-            <button>
+            <button onClick={getData}>
               <RefreshIcon className="refreshIcon" sx={{ fontSize: 30 }} />
             </button>
           </div>
@@ -33,15 +62,15 @@ export const WeatherApp = () => {
         <div className="bodyContainer">
           <div className="mainInfoContainer">
             <div className="locationContainer">
-              <span className="locationText">Zapopan</span>
+              <span className="locationText">{post?.name}</span>
             </div>
             <div className="weatherIcon">
-              <FilterDramaIcon sx={{ fontSize: 70 }} />
+              <div id="icon"><img id="wicon" src={iconUrl} alt="Weather icon"/></div>
             </div>
             <div className="mainInfo">
-              <span className="mainDegrees">45.79°</span>
-              <span className="weatherInfo1">Overcast Clouds</span>
-              <span className="weatherInfo2">Clouds</span>
+              <span className="mainDegrees">{post?.main?.temp}°</span>
+              <span className="weatherInfo2">{post?.weather[0]?.description.toUpperCase()}</span>
+             
             </div>
           </div>
 
@@ -51,8 +80,8 @@ export const WeatherApp = () => {
                 <DeviceThermostatIcon className="icon" sx={{ fontSize: 30 }} />
               </div>
               <div className="specContainer">
-                <span className="specsTitle">Feels like:</span>
-                <span className="specsContent">43.9</span>
+                <span className="specsTitle">Sensación Térmica:</span>
+                <span className="specsContent">{post?.main?.feels_like}°</span>
               </div>
             </div>
 
@@ -61,8 +90,8 @@ export const WeatherApp = () => {
                  <InvertColorsIcon className="icon" sx={{ fontSize: 30 }} />
               </div>
               <div className="specContainer">
-                <span className="specsTitle">Humidity:</span>
-                <span className="specsContent">93 %</span>
+                <span className="specsTitle">Humedad:</span>
+                <span className="specsContent">{post?.main?.humidity} %</span>
               </div>
             </div>
 
@@ -71,8 +100,8 @@ export const WeatherApp = () => {
                 <AirIcon className="icon" sx={{ fontSize: 30 }} />
               </div>
               <div className="specContainer">
-                <span className="specsTitle">Wind Speed:</span>
-                <span className="specsContent">20 miles/h</span>
+                <span className="specsTitle">Viento:</span>
+                <span className="specsContent">{post?.wind?.speed} Km/h</span>
               </div>
             </div>
 
@@ -81,13 +110,14 @@ export const WeatherApp = () => {
                 <SpeedIcon className="icon" sx={{ fontSize: 30 }} />
               </div>
               <div className="specContainer">
-                <span className="specsTitle">Pressure:</span>
-                <span className="specsContent">1025 hPa</span>
+                <span className="specsTitle">Presión:</span>
+                <span className="specsContent">{post?.main?.pressure} hPa</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </>
-  );
+ );
 };
+
