@@ -89,6 +89,14 @@
     min-width: 1024px;
   }
 }
+select{
+  width: 70px;
+  height: 40px;
+  border: none;
+}
+button{
+  cursor: pointer;
+}
 .mainContainer {
   display: flex;
   flex-direction: column;

@@ -1,55 +1,84 @@
 import axios from "axios";
-import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 import RefreshIcon from "@mui/icons-material/Refresh";
 import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
 import SpeedIcon from "@mui/icons-material/Speed";
 import AirIcon from "@mui/icons-material/Air";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-
-
-const baseURL = "https://api.openweathermap.org/data/2.5/weather?q=Zapopan&appid=55729a893ab62af8afc815604208dd24&units=metric&lang=es"
 
 export const WeatherApp = () => {
 
-  const [post, setPost] = useState<any>(null);
-
-  async function getData(){
-    const result = await axios.get(baseURL)
-    setPost(result.data)
+  interface Location{
+    long: number,
+    lat: number,
   }
 
+  const [location, setLocation] = useState<Location | null>(null);
+  const [isMetric, setIsMetric] = useState<boolean>(true);
+  const [post, setPost] = useState<any>(null);
+
+  const baseURL = `https://api.openweathermap.org/data/2.5/weather?lat=${location?.lat ? location.lat:"29.0786976"}&lon=${location?.long ? location.long:"-110.9645151"}&appid=4e91048960fd797af16731e7237484fd&units=${isMetric ? "metric" : "imperial"}&lang=es`;
+
+  const getLocation = () => { 
+     navigator.geolocation.getCurrentPosition((crd) => {
+        setLocation({
+          long: crd.coords.longitude,
+          lat: crd.coords.latitude,
+        });
+      },
+      () => {
+        setLocation({
+          long: -103.3465336,
+          lat: 20.6711442,
+        });
+      }
+     );
+  }
   useEffect(() => {
-    if(!post){
-      getData()
+    if(location){
+      getData();
     }
-  }, []);
+    if(!location){
+      getLocation()
+    }
+  }, [isMetric,location]);
+
+  async function getData() {
+    try{
+      const result = await axios.get(baseURL);
+      setPost(result.data);
+    }
+    catch(error:any) {
+      console.log(error);
+    }
+  }
 
   if (!post) return null;
 
+  const iconCode = post?.weather[0]?.icon;
+  const iconUrl ="http://openweathermap.org/img/wn/" + iconCode + "@4x" + ".png";
 
-  const iconCode = post?.weather[0]?.icon
-  const iconUrl = "http://openweathermap.org/img/wn/" + iconCode + "@4x" + ".png";
+  if(!location){
+    return <h1>cargando...</h1>
+  }
+  
   return (
     <>
-    {console.log(iconUrl)}
       <div className="mainContainer">
         <div className="headContainer">
           <div className="degreesSelectContainer">
             <div>
-              <ul>
-                <li><button >F°</button></li>
-                <li><button >C°</button></li>
-              </ul>
+              <select
+                id=""
+                onChange={(e) => setIsMetric(e.target.value === "metric")}
+              >
+                <option value="metric">C°</option>
+                <option value="imperial">F°</option>
+              </select>
             </div>
-            <div>
-              <button className="degreesSelectButton">
-                <ArrowDropDownIcon sx={{ fontSize: 30 }} />
-              </button>
-            </div>
+            <div></div>
           </div>
 
           <div className="refreshButtonContainer">
@@ -65,12 +94,15 @@ export const WeatherApp = () => {
               <span className="locationText">{post?.name}</span>
             </div>
             <div className="weatherIcon">
-              <div id="icon"><img id="wicon" src={iconUrl} alt="Weather icon"/></div>
+              <div id="icon">
+                <img id="wicon" src={iconUrl} alt="Weather icon" />
+              </div>
             </div>
             <div className="mainInfo">
               <span className="mainDegrees">{post?.main?.temp}°</span>
-              <span className="weatherInfo2">{post?.weather[0]?.description.toUpperCase()}</span>
-             
+              <span className="weatherInfo2">
+                {post?.weather[0]?.description.toUpperCase()}
+              </span>
             </div>
           </div>
 
@@ -87,7 +119,7 @@ export const WeatherApp = () => {
 
             <div className="humidity">
               <div className="iconSpecContainer">
-                 <InvertColorsIcon className="icon" sx={{ fontSize: 30 }} />
+                <InvertColorsIcon className="icon" sx={{ fontSize: 30 }} />
               </div>
               <div className="specContainer">
                 <span className="specsTitle">Humedad:</span>
@@ -101,7 +133,9 @@ export const WeatherApp = () => {
               </div>
               <div className="specContainer">
                 <span className="specsTitle">Viento:</span>
-                <span className="specsContent">{post?.wind?.speed} Km/h</span>
+                <span className="specsContent">
+                  {post?.wind?.speed} {isMetric ? "m/s" : "millas/h"}
+                </span>
               </div>
             </div>
 
@@ -118,6 +152,5 @@ export const WeatherApp = () => {
         </div>
       </div>
     </>
- );
+  );
 };
-
