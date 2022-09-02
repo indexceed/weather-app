@@ -152,7 +152,62 @@ ul {
   flex-direction: column;
   width: 300px;
 }
-.mainInfoContainer {
+.mainInfoContainer {>>>>>>> main
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 100%;
+}
+.headContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 300px;
+  height: 70px;
+}
+.degreesSelectContainer {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  height: 50px;
+  line-height: 45px;
+}
+.degreesSelectButton {
+  margin-top: 7px;
+  background-color: white;
+  border: none;
+}
+ul {
+  padding: 0px 30px;
+  margin: 0px;
+  list-style: none;
+  font-size: 1.2rem;
+}
+.refreshButtonContainer {
+  text-align: center;
+  margin-top: 10px;
+  width: 120px;
+  height: 50px;
+  line-height: 45px;
+}
+.refreshButtonContainer button {
+  background-color: white;
+  border: none;
+  margin-top: 10px;
+  margin-left: 80px;
+  height: 40px;
+  width: 40px;
+}
+.refreshIcon {
+  color: red;
+}
+.bodyContainer {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
   display: grid;
   grid-template-rows: auto;
   width: 100%;
@@ -177,7 +232,6 @@ ul {
   flex-direction: column;
 }
 .mainDegrees {
-  
   color: red;
   font-family: monospace;
 }

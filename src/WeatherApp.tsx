@@ -1,6 +1,6 @@
+
 import axios from "axios";
 import { useState, useEffect } from "react";
-
 import RefreshIcon from "@mui/icons-material/Refresh";
 import DeviceThermostatIcon from "@mui/icons-material/DeviceThermostat";
 import InvertColorsIcon from "@mui/icons-material/InvertColors";
@@ -105,7 +105,6 @@ export const WeatherApp = () => {
               </span>
             </div>
           </div>
-
           <div className="specsInfoContainer">
             <div className="FeelsLike">
               <div className="iconSpecContainer">
@@ -138,7 +137,6 @@ export const WeatherApp = () => {
                 </span>
               </div>
             </div>
-
             <div className="pressure">
               <div className="iconSpecContainer">
                 <SpeedIcon className="icon" sx={{ fontSize: 30 }} />
